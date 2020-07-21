@@ -12,10 +12,12 @@
     <modules>
         <module>ioc-container-overview</module>
         <module>spring-bean</module>
+        <module>dependency-lookup</module>
     </modules>
 
     <properties>
         <spring.version>5.2.2.RELEASE</spring.version>
+        <log.version>1.2</log.version>
     </properties>
     <!-- Spring 依赖管理 -->
     <dependencyManagement>
@@ -44,11 +46,21 @@
                 <version>${spring.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${log.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <!-- Spring 依赖 -->
     <dependencies>
+        <!-- Spring IoC 核心依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -65,6 +77,10 @@
             <artifactId>spring-webflux</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
