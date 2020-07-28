@@ -1,15 +1,18 @@
 package org.cyg.thinking.in.spring.ioc.overview.domain;
 
 import org.cyg.thinking.in.spring.ioc.overview.enums.City;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.core.io.Resource;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * 用户类
  */
-public class User {
+public class User implements BeanNameAware {
 
     private Long id;
     private String name;
@@ -17,6 +20,10 @@ public class User {
     private City[] workCities;
     private List<City> lifeCities;
     private Resource configFileLocation;
+    /**
+     * 当前 Bean 的名称
+     */
+    private transient String beanName;
 
     public Long getId() {
         return id;
@@ -77,9 +84,9 @@ public class User {
                 ", configFileLocation=" + configFileLocation +
                 '}';
     }
-
+    @PostConstruct
     public void init() {
-        System.out.println("自定义初始化方法 init() : User 初始化中...");
+        System.out.println("User Bean [" + beanName + "] 初始化中...");
     }
 
     public static User createUser() {
@@ -87,5 +94,15 @@ public class User {
         user.setId(1L);
         user.setName("张三");
         return user;
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("User Bean [" + beanName + "] 销毁中...");
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        this.beanName = name;
     }
 }
