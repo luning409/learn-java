@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * Web MVC 配置类
+ * 启动 打包好后的 可执行war 命令:
+ * java -jar -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9527
+ * bean-scope/target/bean-scope-1.0-SNAPSHOT-war-exec.jar
  */
 @Configuration
 @EnableWebMvc
