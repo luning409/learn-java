@@ -7,10 +7,13 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:annotation-config/>
+<!--    <context:annotation-config/>-->
 
-    <context:component-scan base-package="org.acme" />
-
+<!--    <context:component-scan base-package="org.acme" />-->
+    <!-- Root BeanDefinition 不需要合并,  不存在 parent -->
+    <!-- 普通 BeanDefinition GenericBeanDefinition  -->
+    <!-- 经过合并后(执行 org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(java.lang.String) 后)
+        GenericBeanDefinition 变成了 RootBeanDefinition   -->
     <bean id="user" class="org.cyg.thinking.in.spring.ioc.overview.domain.User" >
         <property name="id" value="1"/>
         <property name="name" value="法外狂徒:张三"/>
@@ -23,8 +26,14 @@
             </list>
         </property>
         <property name="configFileLocation" value="classpath:/META-INF/user-config.properties" />
+<!--        <property name="bean">-->
+<!--            <bean id="innerBean" /> &lt;!&ndash; bean containingBeanDefinition 嵌套 Bean 定义示例 &ndash;&gt;-->
+<!--        </property>-->
     </bean>
-
+    <!-- 普通 BeanDefinition GenericBeanDefinition  -->
+    <!-- 经过合并后(执行 org.springframework.beans.factory.support.AbstractBeanFactory.getMergedBeanDefinition(java.lang.String) 后)
+        GenericBeanDefinition 变成了 RootBeanDefinition, 并且覆盖 parent 相关配置 -->
+    <!-- primary = true , 增加了一个 address 属性 -->
     <bean id="superUser" class="org.cyg.thinking.in.spring.ioc.overview.domain.SuperUser" parent="user" primary="true">
         <property name="address" value="杭州"/>
     </bean>
