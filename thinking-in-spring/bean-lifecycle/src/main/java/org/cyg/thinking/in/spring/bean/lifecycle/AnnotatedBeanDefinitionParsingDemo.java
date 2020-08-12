@@ -1,10 +1,7 @@
 package org.cyg.thinking.in.spring.bean.lifecycle;
 
-import org.cyg.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotatedBeanDefinitionReader;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 注解 BeanDefinition 解析示例
