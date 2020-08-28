@@ -1,6 +1,5 @@
 package org.cyg.thinking.in.spring.resource;
 
-import org.apache.commons.io.IOUtils;
 import org.cyg.thinking.in.spring.resource.util.ResourceUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.FileSystemResourceLoader;
@@ -8,8 +7,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.charset.StandardCharsets;
 
 /**
  * 带有字符编码的 {@link FileSystemResourceLoader} 示例

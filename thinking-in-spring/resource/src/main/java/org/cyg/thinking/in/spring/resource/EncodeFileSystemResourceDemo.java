@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class EncodeFileSystemResourceDemo {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String currentJavaFilePath = System.getProperty("user.dir") + "\\thinking-in-spring\\resource\\" + "src/main/java/org/cyg/thinking/in/spring/resource/EncodeFileSystemResourceDemo.java";
         File currentJavaFile = new File(currentJavaFilePath);
         // FileSystemResource => WritableResource => Resource
