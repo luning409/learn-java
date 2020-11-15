@@ -20,6 +20,8 @@ public class User implements BeanNameAware {
     private City[] workCities;
     private List<City> lifeCities;
     private Resource configFileLocation;
+
+    private Company company;
     /**
      * 当前 Bean 的名称
      */
@@ -73,6 +75,14 @@ public class User implements BeanNameAware {
         this.lifeCities = lifeCities;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -82,8 +92,10 @@ public class User implements BeanNameAware {
                 ", workCities=" + Arrays.toString(workCities) +
                 ", lifeCities=" + lifeCities +
                 ", configFileLocation=" + configFileLocation +
+                ", company=" + company +
                 '}';
     }
+
     @PostConstruct
     public void init() {
         System.out.println("User Bean [" + beanName + "] 初始化中...");

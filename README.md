@@ -1,2 +1,2 @@
-# learn-spring
-学习 Spring 工程
+# learn-java
+学习 Java 工程
