@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 3. 将声明为 Spring Bean -->
+
+    <!-- 通过CustomEditorConfigurer这个BeanFactoryProcessor来完成自定义的ProperyEditor到IOC容器的添加功能 -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <bean class="org.cyg.thinking.in.spring.conversion.CustomizedPropertyEditorRegistrar" />
+        </property>
+    </bean>
+
+    <!-- 声明 ConversionServiceFactoryBean  -->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters" >
+            <bean class="org.cyg.thinking.in.spring.conversion.PropertiesToStringConverter" />
+        </property>
+    </bean>
+
+    <!-- java.util.Properties -->
+    <util:properties id="context">
+        <prop key="id">1</prop>
+        <prop key="name">zhangsan</prop>
+    </util:properties>
+
+    <bean id="user" class="org.cyg.thinking.in.spring.ioc.overview.domain.User" >
+        <property name="id" value="1"/>
+        <property name="name" value="法外狂徒:张三"/>
+        <!-- Properties 类型 -->
+        <property name="context">
+            <value>
+                id=1
+                name=zhangsan
+            </value>
+        </property>
+        <property name="contestAsTest" ref="context" /> <!-- Properties -> String -->
+    </bean>
+
+</beans>

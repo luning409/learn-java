@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * 用户类
@@ -22,6 +23,10 @@ public class User implements BeanNameAware {
     private Resource configFileLocation;
 
     private Company company;
+
+    private Properties context;
+
+    private String contestAsTest;
     /**
      * 当前 Bean 的名称
      */
@@ -93,6 +98,8 @@ public class User implements BeanNameAware {
                 ", lifeCities=" + lifeCities +
                 ", configFileLocation=" + configFileLocation +
                 ", company=" + company +
+                ", context=" + context +
+                ", contestAsTest='" + contestAsTest + '\'' +
                 '}';
     }
 
@@ -116,5 +123,21 @@ public class User implements BeanNameAware {
     @Override
     public void setBeanName(String name) {
         this.beanName = name;
+    }
+
+    public Properties getContext() {
+        return context;
+    }
+
+    public void setContext(Properties context) {
+        this.context = context;
+    }
+
+    public String getContestAsTest() {
+        return contestAsTest;
+    }
+
+    public void setContestAsTest(String contestAsTest) {
+        this.contestAsTest = contestAsTest;
     }
 }
