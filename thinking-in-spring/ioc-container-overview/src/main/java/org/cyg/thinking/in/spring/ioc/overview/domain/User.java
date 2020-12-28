@@ -2,6 +2,7 @@ package org.cyg.thinking.in.spring.ioc.overview.domain;
 
 import org.cyg.thinking.in.spring.ioc.overview.enums.City;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ import java.util.Properties;
 /**
  * 用户类
  */
-public class User implements BeanNameAware {
+public class User implements BeanNameAware, InitializingBean {
 
     private Long id;
     private String name;
@@ -122,7 +123,13 @@ public class User implements BeanNameAware {
 
     @Override
     public void setBeanName(String name) {
+        System.out.println(name + " Aware exec!");
         this.beanName = name;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println(this.beanName + "afterPropertiesSet!");
     }
 
     public Properties getContext() {

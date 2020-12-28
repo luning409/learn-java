@@ -124,6 +124,7 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFact
 
     @Override
     public void setBeanName(String name) {
+        System.out.println("UserHolder Aware exec!");
         this.beanName = name;
     }
 
